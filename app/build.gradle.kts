@@ -57,6 +57,7 @@ dependencies {
     val nav_version = "2.5.3"
     val room_version = "2.5.2"
     val hilt_version = "2.44"
+    implementation("net.zetetic:android-database-sqlcipher:4.4.2")
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-compiler:$hilt_version")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
