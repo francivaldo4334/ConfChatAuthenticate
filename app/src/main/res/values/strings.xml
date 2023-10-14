@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ConfChat Auth</string>
+    <string name="seu_email_gmail_com">seu.email@gmail.com</string>
+    <string name="login">Login</string>
+    <string name="nome_de_usuario">Nome de usuario</string>
+    <string name="confirmar_senha">Confirmar senha</string>
+    <string name="senha">Senha</string>
+    <string name="logar">Logar</string>
+    <string name="nao_tem_uma_conta">"nao tem uma conta? "</string>
+    <string name="criar_conta"> Criar conta</string>
+    <string name="ja_tem_uma_conta">"Ja tem uma conta? "</string>
+    <string name="entrar">Entrar</string>
+    <string name="termos_e_condicoes">Termos e condicoes</string>
+    <string name="eu_aceito_os">"Eu aceito os "</string>
+    <string name="continuar"><![CDATA[Continuar >]]></string>
+    <string name="autenticador">Autenticador</string>
+    <string name="codigo_copiado">Codigo copiado</string>
+    <string name="copiar">Copiar</string>
+    <string name="usuario_copiado">Usuario copiado</string>
+    <string name="senha_copiada">Senha copiada</string>
+    <string name="autorizr_dispositivo">Autorizr dispositivo</string>
+    <string name="enviar_email_de_recuperacao">Enviar email de recuperacao</string>
+    <string name="recuperacao_de_senha">Recuperacao de senha</string>
+    <string name="insira_o_email_associado_a_sua_conta_e_verifique_sua_caixa_de_entrada">Insira o email associado a sua conta e verifique sua caixa de entrada.</string>
+    <string name="senha_redefinida">Senha redefinida</string>
+    <string name="verifique_sua_conexao_com_a_internet">Verifique sua conexao com a internet</string>
+    <string name="redefinir_senha">Redefinir senha</string>
+</resources>
