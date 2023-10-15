@@ -25,4 +25,5 @@
     <string name="senha_redefinida">Senha redefinida</string>
     <string name="verifique_sua_conexao_com_a_internet">Verifique sua conexao com a internet</string>
     <string name="redefinir_senha">Redefinir senha</string>
+    <string name="usuario">Usuario</string>
 </resources>

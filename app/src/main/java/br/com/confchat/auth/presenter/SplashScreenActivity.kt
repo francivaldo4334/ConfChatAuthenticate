@@ -19,7 +19,7 @@ class SplashScreenActivity : ComponentActivity() {
         setContent {
             LaunchedEffect(key1 = Unit, block = {
                 delay(2000)
-                startActivity(Intent(this@SplashScreenActivity, AuthenticationActivity::class.java))
+                startActivity(Intent(this@SplashScreenActivity, HomeActivity::class.java))
                 finish()
             })
             ConfChatAuthTheme {
