@@ -27,23 +27,11 @@ fun SplashScreen() {
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ){
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_confchat),
-                contentDescription = null,
-                modifier = Modifier.size(42.dp)
-            )
-            Text(
-                text = stringResource(id = R.string.app_name),
-                fontSize = 24.sp
-            )
-        }
+        Icon(
+            painter = painterResource(id = R.drawable.ic_confchat),
+            contentDescription = null,
+            modifier = Modifier.size(56.dp)
+        )
     }
 }
 

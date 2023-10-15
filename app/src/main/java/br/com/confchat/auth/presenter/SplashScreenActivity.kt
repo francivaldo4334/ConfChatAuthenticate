@@ -19,19 +19,10 @@ class SplashScreenActivity : ComponentActivity() {
         setContent {
             LaunchedEffect(key1 = Unit, block = {
                 delay(2000)
-//                viewModel.checkLogin(){
-//                    if(it){
-//                        startActivity(Intent(this@SplashScreenActivity, HomeActivity::class.java))
-//                        finish()
-//                    }
-//                    else{
-                        startActivity(Intent(this@SplashScreenActivity, AuthenticationActivity::class.java))
-                        finish()
-//                    }
-//                }
+                startActivity(Intent(this@SplashScreenActivity, AuthenticationActivity::class.java))
+                finish()
             })
             ConfChatAuthTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
