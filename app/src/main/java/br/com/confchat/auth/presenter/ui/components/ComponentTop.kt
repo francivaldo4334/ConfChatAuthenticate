@@ -1,5 +1,8 @@
 package br.com.confchat.auth.presenter.ui.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -14,6 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -26,22 +33,40 @@ import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 @Composable
 fun ComponentTop() {
+    var expandSearch by remember {
+        mutableStateOf(false)
+    }
+    var textSearch by remember {
+        mutableStateOf("")
+    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
+            .padding(end = 4.dp)
     ){
-        Icon(
-            painter = painterResource(id = R.drawable.vector_1_),
-            contentDescription = null,
-            modifier = Modifier.align(Alignment.Center),
-            tint = Color(0xFF5E964B)
-        )
+        AnimatedVisibility(
+            visible = !expandSearch,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.vector_1_),
+                contentDescription = null,
+                modifier = Modifier.align(Alignment.Center),
+                tint = Color(0xFF5E964B)
+            )
+        }
         Row(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
-                .padding(end = 20.dp)
         ) {
+            ComponentTextFildSearchExpanded(
+                expanded = expandSearch,
+                value = textSearch
+            ){
+                textSearch = it
+            }
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = Icons.Default.Search,

@@ -42,7 +42,7 @@ fun ComponentItemPwd(it:PwdItem) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .padding(horizontal = 32.dp),
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
