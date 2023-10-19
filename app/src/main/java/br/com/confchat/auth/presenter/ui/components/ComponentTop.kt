@@ -1,14 +1,18 @@
 package br.com.confchat.auth.presenter.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -32,54 +36,36 @@ import br.com.confchat.auth.R
 import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 @Composable
-fun ComponentTop() {
-    var expandSearch by remember {
-        mutableStateOf(false)
-    }
-    var textSearch by remember {
-        mutableStateOf("")
-    }
-    Box(
+fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
+    val animatedSpace by animateDpAsState(targetValue = if (openSearch) 16.dp else 80.dp)
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .padding(end = 4.dp)
+            .padding(end = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ){
-        AnimatedVisibility(
-            visible = !expandSearch,
-            enter = fadeIn(),
-            exit = fadeOut()
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.vector_1_),
-                contentDescription = null,
-                modifier = Modifier.align(Alignment.Center),
-                tint = Color(0xFF5E964B)
-            )
-        }
+        Box(modifier = Modifier.width(animatedSpace))
+        Icon(
+            painter = painterResource(id = R.drawable.vector_1_),
+            contentDescription = null,
+            tint = Color(0xFF5E964B)
+        )
         Row(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
+            verticalAlignment = Alignment.CenterVertically
         ) {
             ComponentTextFildSearchExpanded(
-                expanded = expandSearch,
-                value = textSearch
-            ){
-                textSearch = it
-            }
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .border(
-                            1.dp, MaterialTheme.colorScheme.onBackground,
-                            CircleShape
-                        )
-                        .padding(4.dp)
-                )
-            }
-            IconButton(onClick = { /*TODO*/ }) {
+                expanded = openSearch,
+                value = search,
+                onValue = {
+                    onSearch(it)
+                }
+            )
+            IconButton(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.size(40.dp)
+            ) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
                     contentDescription = null,
@@ -99,5 +85,5 @@ fun ComponentTop() {
 @Preview
 @Composable
 private fun ComponentTopPreview() {
-    ComponentTop()
+    ComponentTop(true,""){}
 }

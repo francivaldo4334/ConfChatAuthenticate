@@ -24,10 +24,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.presenter.ui.screens.ScreenListPwd
 import br.com.confchat.auth.presenter.ui.screens.ScreenListTopt
+import br.com.confchat.auth.presenter.viewmodel.model.PwdItem
+import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ComponentPageList() {
+fun ComponentPageList(search:String,listTotp:List<TotpItem>,listPwd:List<PwdItem>) {
     val state = rememberLazyListState()
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -59,10 +61,10 @@ fun ComponentPageList() {
             flingBehavior = rememberSnapFlingBehavior(lazyListState = state)
         ) {
             item {
-                ScreenListTopt()
+                ScreenListTopt(listTotp.filter { if(search.isNotBlank()) it.appName.contains(search) else true })
             }
             item {
-                ScreenListPwd()
+                ScreenListPwd(listPwd.filter { if(search.isNotBlank()) it.site.contains(search) else true })
             }
         }
     }
@@ -71,5 +73,5 @@ fun ComponentPageList() {
 @Preview
 @Composable
 private fun ComponentPageListPreview() {
-    ComponentPageList()
+    ComponentPageList("",emptyList(), emptyList())
 }

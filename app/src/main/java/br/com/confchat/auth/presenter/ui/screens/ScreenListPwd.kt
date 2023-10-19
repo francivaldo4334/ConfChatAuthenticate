@@ -17,25 +17,17 @@ import br.com.confchat.auth.presenter.ui.components.ComponentItemPwd
 import br.com.confchat.auth.presenter.viewmodel.model.PwdItem
 
 @Composable
-fun ScreenListPwd() {
+fun ScreenListPwd(list:List<PwdItem>) {
     val conf = LocalConfiguration.current
     val h = conf.screenHeightDp
     val w = conf.screenWidthDp
-    val listPwdItem = buildList<PwdItem> {
-        add(PwdItem("Teste","1244","site.com.br"))
-        add(PwdItem("Teste","1244","site.com.br"))
-        add(PwdItem("Teste","1244","site.com.br"))
-        add(PwdItem("Teste","1244","site.com.br"))
-        add(PwdItem("Teste","1244","site.com.br"))
-        add(PwdItem("Teste","1244","site.com.br"))
-    }
     LazyColumn(
         modifier = Modifier
             .width(w.dp)
             .height(h.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ){
-        items(listPwdItem){
+        items(list){
             ComponentItemPwd(it)
         }
     }
@@ -44,5 +36,5 @@ fun ScreenListPwd() {
 @Preview
 @Composable
 private fun ScreenListPwdPreview() {
-    ScreenListPwd()
+    ScreenListPwd(emptyList())
 }
