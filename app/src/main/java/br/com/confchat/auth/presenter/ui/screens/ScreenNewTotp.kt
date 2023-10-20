@@ -13,7 +13,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,7 +28,7 @@ import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutlinePwd
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
+fun ScreenNewTotp(open:Boolean, onDismiss:()->Unit) {
     var issuer by remember {
         mutableStateOf("")
     }
@@ -81,6 +80,6 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
 
 @Preview
 @Composable
-private fun ScreenNewPwdPreview() {
-    ScreenNewPwd(true){}
+private fun ScreenNewTotpPreview() {
+    ScreenNewTotp(true){}
 }

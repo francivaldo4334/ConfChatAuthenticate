@@ -1,8 +1,6 @@
 package br.com.confchat.auth.presenter
 
-import android.graphics.Rect
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -18,7 +16,7 @@ import androidx.compose.ui.Modifier
 import br.com.confchat.auth.presenter.ui.components.ComponentDialogPin
 import br.com.confchat.auth.presenter.ui.components.ComponentPageList
 import br.com.confchat.auth.presenter.ui.components.ComponentTop
-import br.com.confchat.auth.presenter.ui.screens.ScreenNewPwd
+import br.com.confchat.auth.presenter.ui.screens.ScreenNewTotp
 import br.com.confchat.auth.presenter.ui.theme.ConfChatAuthTheme
 import br.com.confchat.auth.presenter.viewmodel.model.PwdItem
 import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
@@ -65,7 +63,7 @@ class HomeActivity : ComponentActivity() {
                     LaunchedEffect(key1 = Unit, block = {
                         openInsertPin = true
                     })
-                    ScreenNewPwd(openNewPwd){openNewPwd = false}
+                    ScreenNewTotp(openNewPwd){openNewPwd = false}
                 }
             }
         }
