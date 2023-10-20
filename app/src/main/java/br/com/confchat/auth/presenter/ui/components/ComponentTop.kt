@@ -74,6 +74,11 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
     var submenuH by remember {
         mutableStateOf(0.dp)
     }
+    val onDismissAll = {
+        expandedMenu = false
+        expandedSubMenuTotp = false
+        expandedSubMenuPwd = false
+    }
     Column(
         modifier = Modifier.onPlaced {
             topBarW = it.size.width
@@ -124,7 +129,9 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
         }
         DropdownMenu(
             expanded = expandedMenu,
-            onDismissRequest = { expandedMenu = false },
+            onDismissRequest = {
+                onDismissAll()
+            },
             modifier = Modifier
                 .onPlaced {
                     offsetX = with(density){
@@ -179,7 +186,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                     Column {
                         DropdownMenuItem(
                             text = { Text(text = "Escanear QR code") },
-                            onClick = { /*TODO*/ },
+                            onClick = { onDismissAll();/*TODO*/ },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_qr_code),
@@ -191,7 +198,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                         )
                         DropdownMenuItem(
                             text = { Text(text = "Manualmente") },
-                            onClick = { /*TODO*/ },
+                            onClick = { onDismissAll();/*TODO*/ },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_edit),
@@ -217,7 +224,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                 },
                 trailingIcon = {
                     Icon(
-                        imageVector = if(expandedSubMenuTotp) Icons.TwoTone.KeyboardArrowDown else Icons.TwoTone.KeyboardArrowRight ,
+                        imageVector = if(expandedSubMenuPwd) Icons.TwoTone.KeyboardArrowDown else Icons.TwoTone.KeyboardArrowRight ,
                         contentDescription = null,
                         modifier = Modifier.size(16.dp),
                         tint = MaterialTheme.colorScheme.onBackground
@@ -250,7 +257,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                     Column {
                         DropdownMenuItem(
                             text = { Text(text = "Gerar Aleatoriamente") },
-                            onClick = { /*TODO*/ },
+                            onClick = { onDismissAll();/*TODO*/ },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_pwd),
@@ -262,7 +269,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                         )
                         DropdownMenuItem(
                             text = { Text(text = "Manualmente") },
-                            onClick = { /*TODO*/ },
+                            onClick = { onDismissAll();/*TODO*/ },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_edit),
