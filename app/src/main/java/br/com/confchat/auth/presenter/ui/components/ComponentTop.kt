@@ -3,10 +3,7 @@ package br.com.confchat.auth.presenter.ui.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,11 +18,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.twotone.AddCircle
 import androidx.compose.material.icons.twotone.KeyboardArrowDown
 import androidx.compose.material.icons.twotone.KeyboardArrowRight
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -50,11 +45,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
-import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 @Composable
-fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
-    val animatedSpace by animateDpAsState(targetValue = if (openSearch) 0.dp else 74.dp)
+fun ComponentTop(onNewPwd:()->Unit) {
     var expandedMenu by remember{
         mutableStateOf(false)
     }
@@ -84,47 +77,33 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
             topBarW = it.size.width
         }
     ) {
-        Row(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                .padding(horizontal = 16.dp)
         ){
-            Box(modifier = Modifier.width(animatedSpace))
             Icon(
                 painter = painterResource(id = R.drawable.vector_1_),
                 contentDescription = null,
-                tint = Color(0xFF5E964B)
+                tint = Color(0xFF5E964B),
+                modifier = Modifier.align(Alignment.Center)
             )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            IconButton(
+                onClick = { expandedMenu = true },
+                modifier = Modifier.size(32.dp).align(Alignment.CenterEnd)
             ) {
-                ComponentTextFildSearchExpanded(
-                    expanded = openSearch,
-                    value = search,
-                    onValue = {
-                        onSearch(it)
-                    }
+                Icon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .rotate(90f)
+                        .border(
+                            1.dp, MaterialTheme.colorScheme.onBackground,
+                            CircleShape
+                        )
+                        .padding(4.dp)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                IconButton(
-                    onClick = { expandedMenu = true },
-                    modifier = Modifier.size(32.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.MoreVert,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .rotate(90f)
-                            .border(
-                                1.dp, MaterialTheme.colorScheme.onBackground,
-                                CircleShape
-                            )
-                            .padding(4.dp)
-                    )
-                }
             }
         }
         DropdownMenu(
@@ -269,7 +248,7 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
                         )
                         DropdownMenuItem(
                             text = { Text(text = "Manualmente") },
-                            onClick = { onDismissAll();/*TODO*/ },
+                            onClick = { onDismissAll();onNewPwd() },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_edit),
@@ -289,5 +268,5 @@ fun ComponentTop(openSearch:Boolean,search:String,onSearch:(String)->Unit) {
 @Preview
 @Composable
 private fun ComponentTopPreview() {
-    ComponentTop(false,""){}
+    ComponentTop(){}
 }

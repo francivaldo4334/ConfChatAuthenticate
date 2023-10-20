@@ -18,21 +18,12 @@ import androidx.compose.ui.Modifier
 import br.com.confchat.auth.presenter.ui.components.ComponentDialogPin
 import br.com.confchat.auth.presenter.ui.components.ComponentPageList
 import br.com.confchat.auth.presenter.ui.components.ComponentTop
+import br.com.confchat.auth.presenter.ui.screens.ScreenNewPwd
 import br.com.confchat.auth.presenter.ui.theme.ConfChatAuthTheme
 import br.com.confchat.auth.presenter.viewmodel.model.PwdItem
 import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 class HomeActivity : ComponentActivity() {
-    var kbGone = false
-    var openSearch by mutableStateOf(false)
-    var search by mutableStateOf("")
-    var kbOpened: () -> Unit = {
-        openSearch = true
-    }
-    var kbClosed: () -> Unit = {
-        search = ""
-        openSearch = false
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -42,6 +33,7 @@ class HomeActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     var openInsertPin by remember { mutableStateOf(false) }
+                    var openNewPwd by remember { mutableStateOf(false) }
                     val listTotp = buildList<TotpItem> {
                         add(TotpItem("teste","teste","000 000",0.4f,1))
                         add(TotpItem("teste","teste","000 000",0.4f,1))
@@ -57,11 +49,13 @@ class HomeActivity : ComponentActivity() {
                     }
                     Column {
                         //TOP
-                        ComponentTop(openSearch,search){
-                            search = it
-                        }
+                        ComponentTop(
+                            {
+                                openNewPwd = true
+                            }
+                        )
                         //LISTS
-                        ComponentPageList(search,listTotp,listPwd)
+                        ComponentPageList(listTotp,listPwd)
                     }
                     if (openInsertPin) {
                         ComponentDialogPin() {
@@ -71,23 +65,8 @@ class HomeActivity : ComponentActivity() {
                     LaunchedEffect(key1 = Unit, block = {
                         openInsertPin = true
                     })
+                    ScreenNewPwd(openNewPwd){openNewPwd = false}
                 }
-            }
-        }
-        setupKeyboardDetection(findViewById<View>(android.R.id.content))
-    }
-    fun setupKeyboardDetection(contentView: View) {
-        contentView.viewTreeObserver.addOnGlobalLayoutListener {
-            val r = Rect()
-            contentView.getWindowVisibleDisplayFrame(r)
-            val screenHeight = contentView.rootView.height
-            val keypadHeight = screenHeight - r.bottom
-            if (keypadHeight > screenHeight * 0.15) { // 0.15 ratio is perhaps enough to determine keypad height.
-                kbGone = false
-                kbOpened()
-            } else if(!kbGone) {
-                kbGone = true
-                kbClosed()
             }
         }
     }

@@ -29,7 +29,7 @@ import br.com.confchat.auth.presenter.viewmodel.model.TotpItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ComponentPageList(search:String,listTotp:List<TotpItem>,listPwd:List<PwdItem>) {
+fun ComponentPageList(listTotp:List<TotpItem>,listPwd:List<PwdItem>) {
     val state = rememberLazyListState()
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -61,10 +61,10 @@ fun ComponentPageList(search:String,listTotp:List<TotpItem>,listPwd:List<PwdItem
             flingBehavior = rememberSnapFlingBehavior(lazyListState = state)
         ) {
             item {
-                ScreenListTopt(listTotp.filter { if(search.isNotBlank()) it.appName.contains(search) else true })
+                ScreenListTopt(listTotp)
             }
             item {
-                ScreenListPwd(listPwd.filter { if(search.isNotBlank()) it.site.contains(search) else true })
+                ScreenListPwd(listPwd)
             }
         }
     }
@@ -73,5 +73,5 @@ fun ComponentPageList(search:String,listTotp:List<TotpItem>,listPwd:List<PwdItem
 @Preview
 @Composable
 private fun ComponentPageListPreview() {
-    ComponentPageList("",emptyList(), emptyList())
+    ComponentPageList(emptyList(), emptyList())
 }

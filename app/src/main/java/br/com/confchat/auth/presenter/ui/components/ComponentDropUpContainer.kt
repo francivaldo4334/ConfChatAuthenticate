@@ -3,9 +3,13 @@ package br.com.confchat.auth.presenter.ui.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,17 +28,18 @@ fun ComponentDropUpContainer(
 ) {
     AnimatedVisibility(
         visible = expanded,
-        enter = expandVertically(),
-        exit = shrinkVertically()
+        enter = slideInVertically{it},
+        exit = slideOutVertically{it},
+        modifier = Modifier.background(MaterialTheme.colorScheme.onBackground.copy(0.2f))
     ) {
-        Box(
+        Column(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomCenter
+            verticalArrangement = Arrangement.Bottom
         ){
             Box(modifier = Modifier
-                .fillMaxSize()
-                .clickable { onDimiss() }
-                .background(MaterialTheme.colorScheme.onBackground.copy(0.2f)))
+                .fillMaxWidth()
+                .weight(1f)
+                .clickable { onDimiss() })
             Box(modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp))
