@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.confchat.auth.presenter.ui.components.ComponentButton
 import br.com.confchat.auth.presenter.ui.components.ComponentDropUpContainer
 import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutline
 import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutlinePwd
@@ -37,10 +38,7 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
         mutableStateOf("")
     }
     ComponentDropUpContainer(expanded = open, onDimiss = onDismiss) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.padding(horizontal = 16.dp)
-        ) {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -53,26 +51,34 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
                     Icon(imageVector = Icons.Default.Close, contentDescription = null)
                 }
             }
-            ComponentTextFieldOutline(
-                label = "Username",
-                value = username,
-                onValue = {username = it},
-                modifier = Modifier.fillMaxWidth()
-            )
-            ComponentTextFieldOutlinePwd(
-                label = "Password",
-                value = pwd,
-                onValue = {pwd = it},
-                modifier = Modifier.fillMaxWidth()
-            )
-            ComponentTextFieldOutlinePwd(
-                label = "Comfir password",
-                value = comfirPwd,
-                onValue = {comfirPwd = it},
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(56.dp))
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp)
+            ) {
 
+                ComponentTextFieldOutline(
+                    label = "Username",
+                    value = username,
+                    onValue = {username = it},
+                    modifier = Modifier.fillMaxWidth()
+                )
+                ComponentTextFieldOutlinePwd(
+                    label = "Password",
+                    value = pwd,
+                    onValue = {pwd = it},
+                    modifier = Modifier.fillMaxWidth()
+                )
+                ComponentTextFieldOutlinePwd(
+                    label = "Comfir password",
+                    value = comfirPwd,
+                    onValue = {comfirPwd = it},
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(32.dp))
+                ComponentButton(text = "Adicionar") {
+
+                }
+            }
         }
     }
 }
