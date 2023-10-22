@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import br.com.confchat.auth.data.database.dao.UserDao
 import br.com.confchat.auth.data.database.model.AuthModel
 
 @Database(
@@ -37,4 +38,5 @@ abstract class AuthenticationDb : RoomDatabase()   {
             override fun migrate(database: SupportSQLiteDatabase) {}
         }
     }
+    abstract fun getUserDao(): UserDao
 }

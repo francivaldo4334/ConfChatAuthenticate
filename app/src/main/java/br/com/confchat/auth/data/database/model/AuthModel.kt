@@ -8,7 +8,7 @@ import org.intellij.lang.annotations.Identifier
 @Entity(tableName = "auth_inform")
 data class AuthModel(
     @PrimaryKey(autoGenerate = true)
-    val id:Int = 0,
+    val id:Int = 1,
     @ColumnInfo(name = "db_name")
     val dbName:String
 )
