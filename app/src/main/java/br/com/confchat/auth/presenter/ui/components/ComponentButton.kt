@@ -10,8 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ComponentButton(text:String,modifier: Modifier = Modifier,onClick:()->Unit) {
+fun ComponentButton(text:String,enabled:Boolean = true,modifier: Modifier = Modifier,onClick:()->Unit) {
     Button(
+        enabled = enabled,
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp)

@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
 
 @Composable
-fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onShowNewCredential:()->Unit) {
+fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onOpenQRScanner:()->Unit,onGenerateCredential:()->Unit) {
     var expandedMenu by remember{
         mutableStateOf(false)
     }
@@ -161,7 +161,7 @@ fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onShowNewCredential:()->Un
                     Column {
                         DropdownMenuItem(
                             text = { Text(text = "Escanear QR code") },
-                            onClick = { onDismissAll();/*TODO*/ },
+                            onClick = { onDismissAll();onOpenQRScanner() },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_qr_code),
@@ -232,7 +232,7 @@ fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onShowNewCredential:()->Un
                     Column {
                         DropdownMenuItem(
                             text = { Text(text = "Gerar Aleatoriamente") },
-                            onClick = { onDismissAll();onShowNewCredential() },
+                            onClick = { onDismissAll();onGenerateCredential() },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_pwd),
@@ -264,5 +264,5 @@ fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onShowNewCredential:()->Un
 @Preview
 @Composable
 private fun ComponentTopPreview() {
-    ComponentTop({},{}){}
+    ComponentTop({},{},{},{})
 }

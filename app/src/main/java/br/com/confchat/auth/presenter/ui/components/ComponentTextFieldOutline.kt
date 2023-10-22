@@ -63,7 +63,8 @@ fun ComponentTextFieldOutline(
                         modifier = modifier
                     ) {
                         Row(
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
                         ) {
                             beforeIcon()
                             it()

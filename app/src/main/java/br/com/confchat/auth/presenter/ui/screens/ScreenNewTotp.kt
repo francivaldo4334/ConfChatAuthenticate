@@ -32,7 +32,7 @@ import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutlinePwd
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenNewTotp(open:Boolean, onDismiss:()->Unit) {
+fun ScreenNewTotp(open:Boolean, onNew:(issuer:String,accountName:String,secretKey:String)->Unit, onDismiss:()->Unit) {
     var issuer by remember {
         mutableStateOf("")
     }
@@ -97,7 +97,7 @@ fun ScreenNewTotp(open:Boolean, onDismiss:()->Unit) {
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 ComponentButton(text = "Adicionar") {
-
+                    onNew(issuer,accountName,secretKey)
                 }
             }
         }
@@ -107,5 +107,7 @@ fun ScreenNewTotp(open:Boolean, onDismiss:()->Unit) {
 @Preview
 @Composable
 private fun ScreenNewTotpPreview() {
-    ScreenNewTotp(true){}
+    ScreenNewTotp(open = true, onNew = {issuer, accountName, secretKey ->
+
+    }){}
 }

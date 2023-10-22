@@ -53,34 +53,57 @@ class HomeActivity : ComponentActivity() {
                     Column {
                         //TOP
                         ComponentTop(
-                            {
+                            onNewTotp = {
                                 openNewTotp = true
                             },
-                            {
+                            onNewPwd = {
                                 openNewPwd = true
                             },
-                            {
+                            onOpenQRScanner = {
+                                /*TODO*/
+                            },
+                            onGenerateCredential = {
+                                /*TODO*/
                                 openDialogCredencial = true
-                            }
+                            },
                         )
                         //LISTS
                         ComponentPageList(listTotp,listPwd)
                     }
                     if (openInsertPin) {
                         ComponentDialogPin() {
+                            /*TODO*/
                             openInsertPin = false
                         }
                     }
                     if(openDialogCredencial){
-                        ComponentDialogNewCredential(){
+                        ComponentDialogNewCredential(
+                            "USER",//TODO: mostrar usuario
+                            "PASS"//TODO: mostrar senha
+                        ){
                             openDialogCredencial = false
                         }
                     }
                     LaunchedEffect(key1 = Unit, block = {
                         openInsertPin = true
                     })
-                    ScreenNewTotp(openNewTotp){openNewTotp = false}
-                    ScreenNewPwd(openNewPwd, onShowNewCredential = {openDialogCredencial = true}) {openNewPwd = false}
+                    ScreenNewTotp(
+                        open = openNewTotp,
+                        onNew = { issuer, accountName, secretKey ->
+                            /*TODO*/
+                        }
+                    ) {
+                        openNewTotp = false
+                    }
+                    ScreenNewPwd(
+                        open = openNewPwd,
+                        onNew = { user,pwd->
+                            /*TODO*/
+                            openDialogCredencial = true
+                        }
+                    ) {
+                        openNewPwd = false
+                    }
                 }
             }
         }

@@ -34,7 +34,7 @@ import br.com.confchat.auth.R
 import br.com.confchat.auth.presenter.ui.theme.ConfChatAuthTheme
 
 @Composable
-fun ComponentDialogNewCredential(onDismiss:()->Unit) {
+fun ComponentDialogNewCredential(user:String,pwd:String,onDismiss:()->Unit) {
     var isVisiblePwd by remember {
         mutableStateOf(false)
     }
@@ -105,7 +105,7 @@ fun ComponentDialogNewCredential(onDismiss:()->Unit) {
 @Composable
 fun ComponentDialogNewCredentialPreview() {
     ConfChatAuthTheme {
-        ComponentDialogNewCredential(){
+        ComponentDialogNewCredential("",""){
 
         }
     }
