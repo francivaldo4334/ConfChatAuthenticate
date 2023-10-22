@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import br.com.confchat.auth.presenter.ui.components.ComponentDialogPin
 import br.com.confchat.auth.presenter.ui.components.ComponentPageList
 import br.com.confchat.auth.presenter.ui.components.ComponentTop
+import br.com.confchat.auth.presenter.ui.screens.ScreenNewPwd
 import br.com.confchat.auth.presenter.ui.screens.ScreenNewTotp
 import br.com.confchat.auth.presenter.ui.theme.ConfChatAuthTheme
 import br.com.confchat.auth.presenter.viewmodel.model.PwdItem
@@ -31,7 +32,9 @@ class HomeActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     var openInsertPin by remember { mutableStateOf(false) }
+                    var openNewTotp by remember { mutableStateOf(false) }
                     var openNewPwd by remember { mutableStateOf(false) }
+
                     val listTotp = buildList<TotpItem> {
                         add(TotpItem("teste","teste","000 000",0.4f,1))
                         add(TotpItem("teste","teste","000 000",0.4f,1))
@@ -49,6 +52,9 @@ class HomeActivity : ComponentActivity() {
                         //TOP
                         ComponentTop(
                             {
+                                openNewTotp = true
+                            },
+                            {
                                 openNewPwd = true
                             }
                         )
@@ -63,7 +69,8 @@ class HomeActivity : ComponentActivity() {
                     LaunchedEffect(key1 = Unit, block = {
                         openInsertPin = true
                     })
-                    ScreenNewTotp(openNewPwd){openNewPwd = false}
+                    ScreenNewTotp(openNewTotp){openNewTotp = false}
+                    ScreenNewPwd(openNewPwd) {openNewPwd = false}
                 }
             }
         }

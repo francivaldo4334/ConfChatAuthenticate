@@ -1,20 +1,16 @@
 package br.com.confchat.auth.presenter.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -47,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
 
 @Composable
-fun ComponentTop(onNewPwd:()->Unit) {
+fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit) {
     var expandedMenu by remember{
         mutableStateOf(false)
     }
@@ -177,7 +173,7 @@ fun ComponentTop(onNewPwd:()->Unit) {
                         )
                         DropdownMenuItem(
                             text = { Text(text = "Manualmente") },
-                            onClick = { onDismissAll();/*TODO*/ },
+                            onClick = { onDismissAll();onNewTotp() },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_edit),
@@ -268,5 +264,5 @@ fun ComponentTop(onNewPwd:()->Unit) {
 @Preview
 @Composable
 private fun ComponentTopPreview() {
-    ComponentTop(){}
+    ComponentTop({}){}
 }

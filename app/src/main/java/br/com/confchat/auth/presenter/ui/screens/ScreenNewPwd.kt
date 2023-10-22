@@ -85,6 +85,6 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
 
 @Preview
 @Composable
-fun ScreenNewPwdPreviw() {
+private fun ScreenNewPwdPreviw() {
     ScreenNewPwd(true){}
 }
