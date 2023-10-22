@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import br.com.confchat.auth.presenter.ui.components.ComponentDialogNewCredential
 import br.com.confchat.auth.presenter.ui.components.ComponentDialogPin
 import br.com.confchat.auth.presenter.ui.components.ComponentPageList
 import br.com.confchat.auth.presenter.ui.components.ComponentTop
@@ -34,6 +35,7 @@ class HomeActivity : ComponentActivity() {
                     var openInsertPin by remember { mutableStateOf(false) }
                     var openNewTotp by remember { mutableStateOf(false) }
                     var openNewPwd by remember { mutableStateOf(false) }
+                    var openDialogCredencial by remember { mutableStateOf(false) }
 
                     val listTotp = buildList<TotpItem> {
                         add(TotpItem("teste","teste","000 000",0.4f,1))
@@ -56,6 +58,9 @@ class HomeActivity : ComponentActivity() {
                             },
                             {
                                 openNewPwd = true
+                            },
+                            {
+                                openDialogCredencial = true
                             }
                         )
                         //LISTS
@@ -66,11 +71,16 @@ class HomeActivity : ComponentActivity() {
                             openInsertPin = false
                         }
                     }
+                    if(openDialogCredencial){
+                        ComponentDialogNewCredential(){
+                            openDialogCredencial = false
+                        }
+                    }
                     LaunchedEffect(key1 = Unit, block = {
                         openInsertPin = true
                     })
                     ScreenNewTotp(openNewTotp){openNewTotp = false}
-                    ScreenNewPwd(openNewPwd) {openNewPwd = false}
+                    ScreenNewPwd(openNewPwd, onShowNewCredential = {openDialogCredencial = true}) {openNewPwd = false}
                 }
             }
         }

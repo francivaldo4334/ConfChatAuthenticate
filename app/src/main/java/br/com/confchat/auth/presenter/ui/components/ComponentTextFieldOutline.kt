@@ -17,6 +17,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,6 +29,7 @@ fun ComponentTextFieldOutline(
     value:String,
     label:String = "",
     modifier:Modifier = Modifier,
+    visualTransfortion: VisualTransformation = VisualTransformation.None,
     beforeIcon: @Composable ()->Unit = {},
     afterIcon: @Composable ()->Unit = {},
     onValue:(String)->Unit
@@ -38,6 +41,7 @@ fun ComponentTextFieldOutline(
             Text(text = label, fontSize = 12.sp)
         }
         BasicTextField(
+            visualTransformation = visualTransfortion,
             singleLine = true,
             modifier = Modifier.border(
                 1.dp,

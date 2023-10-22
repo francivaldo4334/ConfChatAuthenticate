@@ -11,6 +11,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
@@ -26,10 +28,11 @@ fun ComponentTextFieldOutlinePwd(
         mutableStateOf(false)
     }
     ComponentTextFieldOutline(
-        value = if(visible) value else "*".repeat(value.length),
+        value = value,
         onValue = onValue,
         modifier = modifier,
         label = label,
+        visualTransfortion = if(visible) VisualTransformation.None else PasswordVisualTransformation(),
         beforeIcon = {
             Icon(
                 painter = painterResource(id = R.drawable.ic_key),

@@ -28,7 +28,7 @@ import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutline
 import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutlinePwd
 
 @Composable
-fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
+fun ScreenNewPwd(open:Boolean, onShowNewCredential:()->Unit, onDismiss:()->Unit) {
     var username by remember {
         mutableStateOf("")
     }
@@ -84,7 +84,8 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 ComponentButton(text = "Adicionar") {
-
+                    onDismiss()
+                    onShowNewCredential()
                 }
             }
         }
@@ -94,5 +95,5 @@ fun ScreenNewPwd(open:Boolean, onDismiss:()->Unit) {
 @Preview
 @Composable
 private fun ScreenNewPwdPreviw() {
-    ScreenNewPwd(true){}
+    ScreenNewPwd(true,{}){}
 }

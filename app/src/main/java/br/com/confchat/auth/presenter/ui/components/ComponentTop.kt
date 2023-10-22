@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
 
 @Composable
-fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit) {
+fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit,onShowNewCredential:()->Unit) {
     var expandedMenu by remember{
         mutableStateOf(false)
     }
@@ -232,7 +232,7 @@ fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit) {
                     Column {
                         DropdownMenuItem(
                             text = { Text(text = "Gerar Aleatoriamente") },
-                            onClick = { onDismissAll();/*TODO*/ },
+                            onClick = { onDismissAll();onShowNewCredential() },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.ic_pwd),
@@ -264,5 +264,5 @@ fun ComponentTop(onNewTotp:()->Unit,onNewPwd:()->Unit) {
 @Preview
 @Composable
 private fun ComponentTopPreview() {
-    ComponentTop({}){}
+    ComponentTop({},{}){}
 }
