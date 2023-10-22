@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,8 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.confchat.auth.R
 import br.com.confchat.auth.presenter.ui.components.ComponentButton
 import br.com.confchat.auth.presenter.ui.components.ComponentDropUpContainer
 import br.com.confchat.auth.presenter.ui.components.ComponentTextFieldOutline
@@ -55,20 +58,36 @@ fun ScreenNewTotp(open:Boolean, onDismiss:()->Unit) {
             }
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp)
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(bottom = 16.dp)
             ) {
 
                 ComponentTextFieldOutline(
                     label = "Issuer (opcional)",
                     value = issuer,
                     onValue = {issuer = it},
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    beforeIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_issue),
+                            contentDescription = null,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                    }
                 )
                 ComponentTextFieldOutline(
                     label = "Account name",
                     value = accountName,
                     onValue = {accountName = it},
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    beforeIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = null,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                    }
                 )
                 ComponentTextFieldOutlinePwd(
                     label = "Secret key",

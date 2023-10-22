@@ -1,5 +1,6 @@
 package br.com.confchat.auth.presenter.ui.components
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -11,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import br.com.confchat.auth.R
 
 @Composable
@@ -24,12 +26,16 @@ fun ComponentTextFieldOutlinePwd(
         mutableStateOf(false)
     }
     ComponentTextFieldOutline(
-        value = value,
+        value = if(visible) value else "*".repeat(value.length),
         onValue = onValue,
         modifier = modifier,
         label = label,
         beforeIcon = {
-            Icon(painter = painterResource(id = R.drawable.ic_key), contentDescription = null)
+            Icon(
+                painter = painterResource(id = R.drawable.ic_key),
+                contentDescription = null,
+                modifier = Modifier.padding(end = 8.dp)
+            )
         },
         afterIcon = {
             IconButton(onClick = { visible = !visible }) {
