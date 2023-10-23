@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +22,7 @@ import br.com.confchat.auth.R
 fun ComponentTextFieldOutlinePwd(
     value:String,
     label:String = "",
+    keyType:KeyboardType = KeyboardType.Text,
     modifier: Modifier = Modifier,
     onValue:(String)->Unit
 ) {
@@ -32,6 +34,7 @@ fun ComponentTextFieldOutlinePwd(
         onValue = onValue,
         modifier = modifier,
         label = label,
+        keyType = keyType,
         visualTransfortion = if(visible) VisualTransformation.None else PasswordVisualTransformation(),
         beforeIcon = {
             Icon(

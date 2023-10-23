@@ -19,6 +19,6 @@ object RepositoryProviders {
     @Provides
     @Singleton
     fun getUserDomain( @ApplicationContext context:Context):IUserDomainRepository {
-        return UserDomainRepository(AuthenticationDb.getInstance(context).getUserDao())
+        return UserDomainRepository(AuthenticationDb.getInstance(context).getUserDao(),context)
     }
 }

@@ -1,15 +1,19 @@
 package br.com.confchat.auth.domain.repository.implementation
 
+import android.content.Context
 import br.com.confchat.auth.data.database.dao.UserDao
 import br.com.confchat.auth.data.database.model.AuthModel
+import br.com.confchat.auth.data.database.room.userdb.UserDb
 import br.com.confchat.auth.domain.repository.contract.IUserDomainRepository
 
-class UserDomainRepository constructor(private val db:UserDao) : IUserDomainRepository {
+class UserDomainRepository constructor(private val db:UserDao,private val context:Context) : IUserDomainRepository {
     companion object {
         private var PASSWORD_DB = ""
     }
     override fun setAccessPassword(it: String) {
         PASSWORD_DB = it
+        var user = db.get()
+        UserDb.getInstance(context = context, dbName = user.dbName,pwd = it)
     }
 
     override fun setDatabaseName(it: String) {

@@ -7,5 +7,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PwdViewModel @Inject constructor(): ViewModel() {
-    val listCredentials : List<PwdItem>
+//    val listCredentials : List<PwdItem>
 }
